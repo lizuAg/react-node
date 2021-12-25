@@ -9,7 +9,9 @@ function LandingPage() {
     },[]);
 
     return{
-        <div>LadingPage</div>
+        <div>
+        LandingPage
+        <div/>
     }
 
 }
