@@ -3,13 +3,28 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
 import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import { applyMiddleware, createStore } from "redux";
+import promiseMiddleware from "redux-promise";
+import ReduxThunk from "redux-thunk";
+import Reducer from "./_reducers";
+
+const createStoreWithMiddleWare = applyMiddleware(
+  promiseMiddleware,
+  ReduxThunk
+);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider
+    store={createStoreWithMiddleWare(
+      Reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+    )}
+  >
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
 
